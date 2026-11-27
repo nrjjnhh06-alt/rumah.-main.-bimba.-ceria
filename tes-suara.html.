@@ -1,0 +1,90 @@
+m6elNOMAsoqePTs244dg
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tes Suara Kak Ceria</title>
+</head>
+<body style="font-family: sans-serif; padding: 20px;">
+
+  <h2>Tes Suara Kak Ceria</h2>
+
+  <p>1. Tempel API key lu di sini:</p>
+  <input id="apiKey" type="password" placeholder="Tempel API key..." style="width: 100%; padding: 10px; margin-bottom: 10px; box-sizing: border-box;" />
+
+  <p>2. ID Suara Kak Ceria:</p>
+  <input id="voiceId" type="text" value="m6elNOMAsoqePTs244dg" style="width: 100%; padding: 10px; margin-bottom: 15px; box-sizing: border-box;" />
+
+  <br />
+  <button id="tombolTes" style="padding: 12px 18px; font-size: 16px;">Tes Suara</button>
+  <button id="tombolSapa" style="padding: 12px 18px; font-size: 16px;">Sapa Adik-Adik</button>
+
+  <p id="info"></p>
+
+  <script>
+    const cacheSuara = new Map();
+
+    async function bicaraKakCeria(kalimat) {
+      const apiKey = document.getElementById("apiKey").value.trim();
+      const voiceId = document.getElementById("voiceId").value.trim() || "m6elNOMAsoqePTs244dg";
+      const info = document.getElementById("info");
+
+      if (!apiKey) {
+        info.textContent = "Tempel dulu API key-nya ya, Jena.";
+        return;
+      }
+
+      localStorage.setItem("kak_ceria_key", apiKey);
+      localStorage.setItem("kak_ceria_voice", voiceId);
+
+      const kunciCache = voiceId + "_" + kalimat;
+      info.textContent = "Sebentar, Kak Ceria lagi siap-siap ngomong...";
+
+      try {
+        let urlAudio = cacheSuara.get(kunciCache);
+
+        if (!urlAudio) {
+          const respon = await fetch("https://api.elevenlabs.io/v1/text-to-speech/" + voiceId, {
+            method: "POST",
+            headers: {
+              "xi-api-key": apiKey,
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              text: kalimat,
+              model_id: "eleven_multilingual_v2"
+            })
+          });
+
+          if (!respon.ok) {
+            throw new Error("Kode error: " + respon.status);
+          }
+
+          const fileAudio = await respon.blob();
+          urlAudio = URL.createObjectURL(fileAudio);
+          cacheSuara.set(kunciCache, urlAudio);
+        }
+
+        const putar = new Audio(urlAudio);
+        info.textContent = "Kak Ceria: \"" + kalimat + "\"";
+        await putar.play();
+      } catch (error) {
+        info.textContent = "Gagal bunyi (" + error.message + "). Cek lagi API key atau kuota ElevenLabs-nya.";
+      }
+    }
+
+    document.getElementById("apiKey").value = localStorage.getItem("kak_ceria_key") || "";
+    document.getElementById("voiceId").value = localStorage.getItem("kak_ceria_voice") || "m6elNOMAsoqePTs244dg";
+
+    document.getElementById("tombolTes").addEventListener("click", function () {
+      bicaraKakCeria("Halo! Suara Kak Ceria sudah aktif!");
+    });
+
+    document.getElementById("tombolSapa").addEventListener("click", function () {
+      bicaraKakCeria("Halo adik-adik! Yuk kita main bareng Kak Ceria!");
+    });
+  </script>
+
+</body>
+</html>
