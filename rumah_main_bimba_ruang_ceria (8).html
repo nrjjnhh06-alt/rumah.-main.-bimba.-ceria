@@ -1,0 +1,1795 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rumah Main Bimba Ruang Ceria</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fff8fc;
+  --card: #fffdf9;
+  --tx: #47284e;
+  --mut: #876391;
+  --bd: #ffb8d9;
+  --bd-soft: #ffe0ef;
+  --pri: #ff4d94;
+  --pri-sh: #d6296e;
+  --sky-top: #bceaff;
+  --sky-mid: #ffe8f3;
+  --sky-bot: #fff6dc;
+  --dot: rgba(255, 133, 185, 0.16);
+  --hill-1: #9be8b8;
+  --hill-2: #75d99d;
+  --grass: #58c984;
+  --shadow-soft: 0 10px 24px rgba(173, 86, 134, 0.14);
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #321d3b;
+    --card: #3f264a;
+    --tx: #fff3fa;
+    --mut: #dfb8e8;
+    --bd: #7d478c;
+    --bd-soft: #593166;
+    --sky-top: #261a3d;
+    --sky-mid: #3b224a;
+    --sky-bot: #4a2848;
+    --dot: rgba(255, 180, 220, 0.08);
+    --hill-1: #2a5948;
+    --hill-2: #214a3b;
+    --grass: #193b2f;
+    --shadow-soft: 0 10px 24px rgba(0, 0, 0, 0.35);
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #321d3b;
+  --card: #3f264a;
+  --tx: #fff3fa;
+  --mut: #dfb8e8;
+  --bd: #7d478c;
+  --bd-soft: #593166;
+  --sky-top: #261a3d;
+  --sky-mid: #3b224a;
+  --sky-bot: #4a2848;
+  --dot: rgba(255, 180, 220, 0.08);
+  --hill-1: #2a5948;
+  --hill-2: #214a3b;
+  --grass: #193b2f;
+  --shadow-soft: 0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+}
+
+body {
+  margin: 0;
+  background-color: var(--sky-mid);
+  background-image:
+    radial-gradient(var(--dot) 3px, transparent 3px),
+    radial-gradient(var(--dot) 2px, transparent 2px),
+    linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 52%, var(--sky-bot) 100%);
+  background-size: 36px 36px, 36px 36px, 100% 100%;
+  background-position: 0 0, 18px 18px, 0 0;
+  background-attachment: fixed;
+  color: var(--tx);
+  font-family: "Baloo 2", "Comic Sans MS", "Chalkboard SE", system-ui, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 14px;
+  overflow-x: hidden;
+}
+
+.scenery {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.scenery-sky {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 320px;
+}
+
+.sun-spin {
+  transform-origin: 86px 76px;
+  animation: sunRotate 28s linear infinite;
+}
+
+@keyframes sunRotate {
+  to { transform: rotate(360deg); }
+}
+
+.cloud-drift-1 {
+  animation: cloudMove 34s ease-in-out infinite alternate;
+}
+
+.cloud-drift-2 {
+  animation: cloudMove 42s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes cloudMove {
+  from { transform: translateX(-18px); }
+  to { transform: translateX(24px); }
+}
+
+.scenery-ground {
+  position: absolute;
+  bottom: 0;
+  left: -4%;
+  width: 108%;
+  height: 155px;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 520px;
+  position: relative;
+  z-index: 2;
+  padding-bottom: 105px;
+}
+
+.brand {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  font-size: 19px;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(135deg, #ff549c 0%, #ff85bc 48%, #ffae42 100%);
+  border: 4px solid #fff;
+  border-radius: 28px;
+  padding: 10px 54px 10px 16px;
+  margin-bottom: 14px;
+  box-shadow: 0 6px 0 #d93b7e, var(--shadow-soft);
+  text-shadow: 0 2px 0 rgba(168, 28, 86, 0.35);
+  letter-spacing: 0.3px;
+  cursor: pointer;
+}
+
+.brand::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 14px;
+  right: 52px;
+  height: 8px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0));
+  pointer-events: none;
+}
+
+.bgm-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  background: linear-gradient(180deg, #ffe066 0%, #ffae42 100%);
+  color: #5c3106;
+  font-size: 19px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 3px 0 #c97a16;
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 3;
+  padding: 0;
+}
+
+.bgm-btn.playing {
+  animation: noteBounce 0.9s ease-in-out infinite alternate;
+}
+
+.bgm-btn.muted {
+  background: linear-gradient(180deg, #f3e6f5 0%, #d8c2dc 100%);
+  box-shadow: 0 3px 0 #9e82a3;
+  opacity: 0.9;
+}
+
+.bgm-btn:active {
+  transform: translateY(-50%) scale(0.9);
+}
+
+@keyframes noteBounce {
+  from { transform: translateY(-50%) rotate(-8deg) scale(1); }
+  to { transform: translateY(-54%) rotate(8deg) scale(1.08); }
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mas {
+  width: 104px;
+  height: 112px;
+  border: 0;
+  background: none;
+  border-radius: 0;
+  font-size: 0;
+  cursor: pointer;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: bob 2.2s ease-in-out infinite;
+  filter: drop-shadow(0 6px 8px rgba(155, 67, 114, 0.22));
+}
+
+.mas.wig {
+  animation: wig 0.5s;
+}
+
+.bub {
+  background: var(--card);
+  border: 4px solid var(--bd);
+  border-radius: 24px;
+  padding: 12px 16px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.35;
+  position: relative;
+  flex: 1;
+  box-shadow: 0 5px 0 var(--bd-soft), var(--shadow-soft);
+}
+
+.bub::before {
+  content: "";
+  position: absolute;
+  left: -15px;
+  top: 30px;
+  border: 9px solid transparent;
+  border-right-color: var(--bd);
+  border-left: 0;
+}
+
+.bub::after {
+  content: "";
+  position: absolute;
+  left: -9px;
+  top: 32px;
+  border: 7px solid transparent;
+  border-right-color: var(--card);
+  border-left: 0;
+}
+
+@keyframes bob {
+  50% { transform: translateY(-7px); }
+}
+
+@keyframes wig {
+  25% { transform: rotate(-12deg) scale(1.12); }
+  75% { transform: rotate(12deg) scale(1.12); }
+}
+
+.box {
+  position: relative;
+  background: var(--card);
+  border: 4px solid var(--bd);
+  border-radius: 30px;
+  padding: 20px;
+  margin-top: 14px;
+  box-shadow: 0 8px 0 var(--bd-soft), var(--shadow-soft);
+}
+
+.box::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 2.5px dashed var(--bd-soft);
+  border-radius: 22px;
+  pointer-events: none;
+}
+
+.box > * {
+  position: relative;
+  z-index: 1;
+}
+
+input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 20px;
+  border: 3px solid var(--bd);
+  background: var(--bg);
+  color: var(--tx);
+  font: inherit;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  box-shadow: inset 0 3px 6px rgba(180, 90, 140, 0.08);
+  outline: none;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+input:focus {
+  border-color: var(--pri);
+  transform: scale(1.01);
+}
+
+.go {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding: 15px 18px;
+  border: 3px solid rgba(255, 255, 255, 0.65);
+  border-radius: 24px;
+  background: linear-gradient(180deg, #ff6aa6 0%, var(--pri) 100%);
+  color: #fff;
+  font: inherit;
+  font-size: 22px;
+  font-weight: 800;
+  box-shadow: 0 6px 0 var(--pri-sh), 0 10px 18px rgba(255, 77, 148, 0.28);
+  margin-top: 8px;
+  cursor: pointer;
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.16);
+}
+
+.go::after,
+.opt::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 12px;
+  width: 34px;
+  height: 8px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+}
+
+.go:hover {
+  transform: translateY(-2px) scale(1.015);
+}
+
+.go:active {
+  transform: translateY(4px) scale(0.98);
+  box-shadow: 0 2px 0 var(--pri-sh);
+}
+
+.ages {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 9px;
+  margin-bottom: 12px;
+}
+
+.ages button {
+  position: relative;
+  border: 3px solid var(--bd);
+  background: linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+  color: var(--tx);
+  border-radius: 20px;
+  padding: 9px 2px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  line-height: 1.15;
+  box-shadow: 0 4px 0 var(--bd-soft);
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.2s, border-color 0.2s;
+}
+
+.ages button:hover {
+  transform: translateY(-2px);
+}
+
+.ages button.on {
+  background: linear-gradient(180deg, #ff70ab 0%, var(--pri) 100%);
+  color: #fff;
+  border-color: #fff;
+  box-shadow: 0 5px 0 var(--pri-sh);
+  transform: translateY(-3px) scale(1.06);
+}
+
+.ages b {
+  display: block;
+  font-size: 26px;
+}
+
+.bar {
+  height: 20px;
+  background: var(--card);
+  border: 3px solid var(--bd);
+  border-radius: 14px;
+  overflow: hidden;
+  flex: 1;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.bar i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--c), #ffd43b);
+  width: 0;
+  transition: width 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border-radius: 10px;
+}
+
+.bk {
+  border: 3px solid #fff;
+  background: linear-gradient(180deg, #ffe2f0 0%, var(--bd) 100%);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 4px 0 rgba(168, 72, 120, 0.25);
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+  flex: none;
+}
+
+.bk:active {
+  transform: translateY(3px) scale(0.95);
+}
+
+.vis {
+  font-size: 68px;
+  text-align: center;
+  margin: 14px 0 6px;
+  line-height: 1.2;
+  word-break: break-word;
+  background: var(--bg);
+  border: 3px dashed var(--bd-soft);
+  border-radius: 22px;
+  padding: 12px 8px;
+}
+
+.q {
+  font-size: 23px;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.sp {
+  border: 2px solid #fff;
+  background: linear-gradient(180deg, #ffe3f1, var(--bd));
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 21px;
+  cursor: pointer;
+  margin-left: 6px;
+  box-shadow: 0 3px 0 rgba(168, 72, 120, 0.2);
+  transition: transform 0.15s;
+}
+
+.sp:active {
+  transform: scale(0.92);
+}
+
+.opts {
+  display: grid;
+  gap: 12px;
+}
+
+.opt {
+  position: relative;
+  overflow: hidden;
+  padding: 15px 16px;
+  border: 3px solid rgba(255, 255, 255, 0.65);
+  border-radius: 24px;
+  background: var(--c);
+  color: #fff;
+  font: inherit;
+  font-size: 27px;
+  font-weight: 800;
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.22);
+  cursor: pointer;
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.2s;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.18);
+}
+
+.opt:hover {
+  transform: translateY(-2px) scale(1.015);
+}
+
+.opt:active {
+  transform: translateY(4px) scale(0.98);
+}
+
+.opt.ar {
+  font-size: 44px;
+  line-height: 1.3;
+}
+
+.opt.ok {
+  background: linear-gradient(180deg, #43d98e 0%, #22a866 100%) !important;
+  transform: scale(1.05);
+}
+
+.opt.no {
+  background: linear-gradient(180deg, #ff7075 0%, #e03e44 100%) !important;
+  opacity: 0.85;
+}
+
+.res {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 10px;
+  margin-bottom: 8px;
+  background: var(--bg);
+  border: 2.5px solid var(--bd-soft);
+  border-radius: 20px;
+  font-size: 19px;
+  font-weight: 800;
+}
+
+.res em {
+  font-style: normal;
+  margin-left: auto;
+  background: var(--c);
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 16px;
+  padding: 3px 16px;
+  font-size: 25px;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.15);
+}
+
+.mut {
+  color: var(--mut);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.lad {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.lad span {
+  padding: 4px 14px;
+  border-radius: 14px;
+  background: var(--bd-soft);
+  font-weight: 800;
+  font-size: 16px;
+  transition: 0.2s;
+}
+
+.lad .on {
+  background: var(--c);
+  color: #fff;
+  border: 2px solid #fff;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.15);
+}
+
+.lad .st {
+  margin-left: auto;
+  background: #fff3bf;
+  color: #8f5b00;
+  border: 2px solid #ffd43b;
+}
+
+.zones {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.zone {
+  min-height: 98px;
+  border: 4px dashed var(--c);
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+  font-weight: 800;
+  background: var(--bg);
+  transition: transform 0.2s, background 0.25s;
+}
+
+.zone.ok {
+  border-style: solid;
+  border-color: #2bb673;
+  background: #d8f7e3;
+  color: #2b2540;
+  transform: scale(1.03);
+}
+
+.tray {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  padding: 14px;
+  border-radius: 24px;
+  background: var(--bd-soft);
+  border: 3px dashed var(--bd);
+  min-height: 92px;
+}
+
+.drag {
+  font-size: 44px;
+  background: var(--card);
+  border: 3px solid #fff;
+  border-radius: 22px;
+  padding: 6px 16px;
+  box-shadow: 0 6px 0 rgba(168, 72, 120, 0.22);
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  animation: bob 2.2s ease-in-out infinite;
+  position: relative;
+  transition: transform 0.25s;
+}
+
+.drag.up {
+  z-index: 50;
+  animation: none;
+  cursor: grabbing;
+}
+
+.drag.placed {
+  animation: none;
+  box-shadow: none;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  font-size: 38px;
+}
+
+.hide {
+  display: none !important;
+}
+
+.map {
+  position: relative;
+  height: 540px;
+  border-radius: 32px;
+  border: 5px solid #fff;
+  outline: 4px solid var(--bd);
+  overflow: hidden;
+  background: linear-gradient(180deg, #b8f1ff 0%, #dafad4 24%, #9ae89e 68%, #7ed684 100%);
+  margin-top: 14px;
+  box-shadow: var(--shadow-soft);
+}
+
+.map > svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.nd {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ffe8a3 0%, #f5b953 60%, #d98c2b 100%);
+  border: 4px solid #fff;
+  outline: 4px solid #b56d1b;
+  color: #5c3106;
+  font: inherit;
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 7px 0 #9c5911, 0 10px 16px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  padding: 2px;
+  z-index: 2;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.nd small {
+  font-size: 10.5px;
+  line-height: 1.05;
+  font-weight: 800;
+  margin-top: 2px;
+  max-width: 68px;
+  color: #4a2502;
+}
+
+.nd.cur {
+  animation: pulse 0.85s ease-in-out infinite alternate;
+  background: radial-gradient(circle at 35% 30%, #ff9ec7 0%, #ff4f9a 70%, #d6296e 100%);
+  outline-color: #ff4f9a;
+  color: #fff;
+  box-shadow: 0 7px 0 #b81d5c, 0 0 0 8px rgba(255, 79, 154, 0.28);
+}
+
+.nd.cur small {
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.nd.dn {
+  background: radial-gradient(circle at 35% 30%, #98f5be 0%, #2dc97a 70%, #199c58 100%);
+  outline-color: #16854b;
+  color: #fff;
+  box-shadow: 0 7px 0 #12703f;
+}
+
+.nd.dn small {
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.nd.lock {
+  filter: saturate(0.55) brightness(0.95);
+  opacity: 0.88;
+}
+
+@keyframes pulse {
+  to { transform: translate(-50%, -50%) scale(1.14); }
+}
+
+.pm {
+  position: absolute;
+  width: 64px;
+  transform: translate(-50%, -92%);
+  transition: left 0.9s, top 0.9s cubic-bezier(0.3, 1.5, 0.5, 1);
+  pointer-events: none;
+  z-index: 3;
+  filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.25));
+}
+
+.mini {
+  width: 46px;
+  display: block;
+}
+
+.rwd {
+  width: 175px;
+  margin: 8px auto;
+  animation: bob 1.6s ease-in-out infinite;
+  filter: drop-shadow(0 8px 12px rgba(255, 79, 154, 0.25));
+}
+
+.an {
+  position: absolute;
+  font-size: 28px;
+  z-index: 1;
+  animation: walk var(--t, 18s) linear infinite;
+  animation-delay: var(--dl, 0s);
+  pointer-events: none;
+}
+
+.an i {
+  display: block;
+  font-style: normal;
+  animation: hop 0.6s ease-in-out infinite;
+}
+
+@keyframes walk {
+  from { left: -12%; }
+  to { left: 106%; }
+}
+
+@keyframes hop {
+  0%, 100% { transform: scaleX(-1) translateY(0); }
+  50% { transform: scaleX(-1) translateY(-8px); }
+}
+
+svg.m {
+  width: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.mo {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.talk .mo {
+  animation: mo 0.18s infinite alternate;
+}
+
+@keyframes mo {
+  to { transform: scaleY(2.8) scaleX(0.9); }
+}
+
+.ey {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: blink 4s infinite;
+}
+
+@keyframes blink {
+  0%, 93%, 100% { transform: scaleY(1); }
+  96% { transform: scaleY(0.1); }
+}
+
+.pm svg {
+  animation: bob 1s ease-in-out infinite;
+}
+
+#confetti {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+}
+</style>
+</head>
+<body>
+
+<canvas id="confetti" aria-hidden="true"></canvas>
+
+<div class="scenery" aria-hidden="true">
+  <svg class="scenery-sky" viewBox="0 0 800 320" preserveAspectRatio="xMidYMin slice">
+    <g transform="translate(460, 220)">
+      <path d="M-240,0 A240,210 0 0,1 240,0" fill="none" stroke="#ff94c2" stroke-width="18" stroke-opacity="0.35"/>
+      <path d="M-222,0 A222,192 0 0,1 222,0" fill="none" stroke="#ffcf70" stroke-width="18" stroke-opacity="0.35"/>
+      <path d="M-204,0 A204,174 0 0,1 204,0" fill="none" stroke="#fff380" stroke-width="18" stroke-opacity="0.38"/>
+      <path d="M-186,0 A186,156 0 0,1 186,0" fill="none" stroke="#8ce8b3" stroke-width="18" stroke-opacity="0.35"/>
+      <path d="M-168,0 A168,138 0 0,1 168,0" fill="none" stroke="#8fd3ff" stroke-width="18" stroke-opacity="0.35"/>
+    </g>
+
+    <g>
+      <g class="sun-spin" stroke="#ffcf56" stroke-width="6" stroke-linecap="round">
+        <line x1="86" y1="22" x2="86" y2="34"/>
+        <line x1="86" y1="118" x2="86" y2="130"/>
+        <line x1="32" y1="76" x2="44" y2="76"/>
+        <line x1="128" y1="76" x2="140" y2="76"/>
+        <line x1="48" y1="38" x2="57" y2="47"/>
+        <line x1="115" y1="105" x2="124" y2="114"/>
+        <line x1="124" y1="38" x2="115" y2="47"/>
+        <line x1="57" y1="105" x2="48" y2="114"/>
+      </g>
+      <circle cx="86" cy="76" r="34" fill="#ffe066" stroke="#ffbe3b" stroke-width="4"/>
+      <circle cx="75" cy="72" r="3.5" fill="#6b4415"/>
+      <circle cx="97" cy="72" r="3.5" fill="#6b4415"/>
+      <circle cx="69" cy="80" r="4.5" fill="#ff94a8" opacity="0.6"/>
+      <circle cx="103" cy="80" r="4.5" fill="#ff94a8" opacity="0.6"/>
+      <path d="M79,82 Q86,90 93,82" fill="none" stroke="#6b4415" stroke-width="3" stroke-linecap="round"/>
+    </g>
+
+    <g class="cloud-drift-1" fill="#ffffff" opacity="0.88">
+      <circle cx="215" cy="68" r="24"/>
+      <circle cx="242" cy="58" r="30"/>
+      <circle cx="272" cy="66" r="24"/>
+      <rect x="212" y="66" width="64" height="26" rx="13"/>
+    </g>
+
+    <g class="cloud-drift-2" fill="#ffffff" opacity="0.82">
+      <circle cx="620" cy="88" r="22"/>
+      <circle cx="648" cy="76" r="32"/>
+      <circle cx="680" cy="86" r="25"/>
+      <rect x="616" y="84" width="68" height="27" rx="13"/>
+    </g>
+
+    <text x="365" y="54" font-size="22" opacity="0.65">✨</text>
+    <text x="535" y="46" font-size="20" opacity="0.6">💖</text>
+    <text x="740" y="135" font-size="24" opacity="0.65">🦋</text>
+  </svg>
+
+  <svg class="scenery-ground" viewBox="0 0 800 160" preserveAspectRatio="none">
+    <path d="M0,75 Q180,10 390,68 T800,45 L800,160 L0,160 Z" fill="var(--hill-1)"/>
+    <path d="M0,95 Q240,135 480,75 T800,92 L800,160 L0,160 Z" fill="var(--hill-2)"/>
+    <path d="M0,115 Q200,90 420,116 T800,105 L800,160 L0,160 Z" fill="var(--grass)"/>
+
+    <g transform="translate(85, 118)">
+      <circle cx="0" cy="-6" r="5" fill="#ff85b9"/><circle cx="6" cy="0" r="5" fill="#ff85b9"/>
+      <circle cx="0" cy="6" r="5" fill="#ff85b9"/><circle cx="-6" cy="0" r="5" fill="#ff85b9"/>
+      <circle cx="0" cy="0" r="4" fill="#ffe066"/>
+    </g>
+    <g transform="translate(260, 128)">
+      <circle cx="0" cy="-6" r="5" fill="#ffffff"/><circle cx="6" cy="0" r="5" fill="#ffffff"/>
+      <circle cx="0" cy="6" r="5" fill="#ffffff"/><circle cx="-6" cy="0" r="5" fill="#ffffff"/>
+      <circle cx="0" cy="0" r="4" fill="#ff9f43"/>
+    </g>
+    <g transform="translate(530, 122)">
+      <circle cx="0" cy="-6" r="5" fill="#ffd43b"/><circle cx="6" cy="0" r="5" fill="#ffd43b"/>
+      <circle cx="0" cy="6" r="5" fill="#ffd43b"/><circle cx="-6" cy="0" r="5" fill="#ffd43b"/>
+      <circle cx="0" cy="0" r="4" fill="#ff6b6b"/>
+    </g>
+    <g transform="translate(705, 118)">
+      <circle cx="0" cy="-6" r="5" fill="#ff94c2"/><circle cx="6" cy="0" r="5" fill="#ff94c2"/>
+      <circle cx="0" cy="6" r="5" fill="#ff94c2"/><circle cx="-6" cy="0" r="5" fill="#ff94c2"/>
+      <circle cx="0" cy="0" r="4" fill="#fff3bf"/>
+    </g>
+  </svg>
+
+  <span class="an" style="bottom:8px;--t:26s"><i>🐶</i></span>
+  <span class="an" style="bottom:10px;--t:31s;--dl:-12s"><i>🐱</i></span>
+  <span class="an" style="bottom:6px;--t:22s;--dl:-6s"><i>🐣</i></span>
+</div>
+
+<div class="wrap">
+  <div class="brand" id="brandHeader">
+    <span>🌸 Rumah Main Bimba Ruang Ceria 🌸</span>
+    <button class="bgm-btn" id="bgmBtn" title="Nyalakan / Matikan Musik Ceria" aria-label="Kontrol Musik">🎵</button>
+  </div>
+  <div class="top">
+    <div class="mas" id="mas" title="Ketuk untuk mendengar suara Kak Ceria"></div>
+    <div class="bub" id="bub"></div>
+  </div>
+
+  <div id="v1" class="box">
+    <input id="nama" placeholder="Namamu siapa? ✏️">
+    <p class="mut" style="margin:4px 0 8px">Umurmu berapa tahun? 🎂</p>
+    <div class="ages" id="ages">
+      <button data-a="3">🐣<b>3</b>tahun</button>
+      <button data-a="4">🐥<b>4</b>tahun</button>
+      <button data-a="5">🐰<b>5</b>tahun</button>
+      <button data-a="6">🦁<b>6</b>tahun</button>
+    </div>
+    <button class="go" id="mulai">Ayo Main! 🚀</button>
+  </div>
+
+  <div id="v2" class="hide">
+    <p class="mut" style="margin:12px 0 6px;text-align:center">Pilih umur (soal ikut berubah) 👇</p>
+    <div class="ages" id="ages2"></div>
+    <div class="map" id="hm" style="margin-top:6px"></div>
+  </div>
+
+  <div id="v3" class="hide" style="--c:var(--pri)">
+    <div class="top" style="margin-top:12px">
+      <button class="bk" id="back" aria-label="Kembali ke Peta Utama">🏠</button>
+      <div class="bar"><i id="pb"></i></div>
+    </div>
+    <div class="map" id="smap"></div>
+    <div class="box hide" id="qcard">
+      <div class="lad" id="lad"></div>
+      <div class="vis" id="vis"></div>
+      <div class="q"><span id="qt"></span><button class="sp" id="sp" aria-label="Ulangi suara">🔊</button></div>
+      <div class="opts" id="opts"></div>
+    </div>
+  </div>
+
+  <div id="v5" class="box hide" style="--c:#4cc38a">
+    <div class="top">
+      <button class="bk" id="mback" aria-label="Kembali ke Peta Utama">🏠</button>
+      <div class="bar"><i id="mpb"></i></div>
+    </div>
+    <div class="q" style="margin-top:14px"><span id="mt"></span></div>
+    <div class="zones" id="zones"></div>
+    <div class="tray" id="tray"></div>
+  </div>
+
+  <div id="v6" class="box hide" style="text-align:center">
+    <h2 style="margin:0;color:var(--pri)">🎉 Teman Baru! 🎉</h2>
+    <div class="rwd" id="rwm"></div>
+    <h2 id="rwn" style="margin:4px 0"></h2>
+    <p class="mut" id="rwl"></p>
+    <button class="go" id="rwgo">Lanjut Petualangan ➡️</button>
+  </div>
+
+  <div id="v4" class="box hide">
+    <div id="rs"></div>
+    <p class="mut" id="ket" style="text-align:center"></p>
+    <a class="go" id="wa" target="_blank" rel="noopener" style="background:linear-gradient(180deg,#39d478,#20a857);box-shadow:0 6px 0 #157a3e;display:block;text-align:center;text-decoration:none">Lanjut Daftar via WhatsApp 📲</a>
+    <p class="mut" style="text-align:center;margin:10px 0 0">Atau hubungi admin: 0895-3417-35600</p>
+    <button class="go" id="kembali" style="background:linear-gradient(180deg,#ffe0ef,var(--bd));color:var(--tx);box-shadow:0 5px 0 rgba(168,72,120,0.22);text-shadow:none">Main Lagi 🎮</button>
+  </div>
+</div>
+
+<script>
+// ===== PENGATURAN =====
+var WA_ADMIN = "62895341735600";
+var GEMINI_API_KEY = "AQ.Ab8RN6I81JORHMfQsReouDv-D6GJG450szfDzzmSEMvOv5XypQ";
+var NAMA_LEVEL = { A: "Pengenalan", B: "Menengah", C: "Lanjutan" };
+function level(s, m) { var r = s / (m || 6); return r <= .34 ? "A" : r <= .67 ? "B" : "C"; }
+
+// ===== EFEK KONFETI PERAYAAN =====
+var confetti = (function() {
+  var c = document.getElementById("confetti"), ctx = c.getContext("2d");
+  var parts = [], running = false;
+  var colors = ["#ff4d94", "#ffd43b", "#4cc38a", "#5bc0eb", "#ff9f43", "#b197fc"];
+  function resize() { c.width = window.innerWidth; c.height = window.innerHeight; }
+  window.addEventListener("resize", resize);
+  resize();
+  function burst(count) {
+    for (var i = 0; i < (count || 45); i++) {
+      parts.push({
+        x: c.width * (0.2 + Math.random() * 0.6),
+        y: c.height * 0.42,
+        vx: (Math.random() - 0.5) * 14,
+        vy: -Math.random() * 13 - 4,
+        size: 7 + Math.random() * 7,
+        color: colors[i % colors.length],
+        rot: Math.random() * 360,
+        vrot: (Math.random() - 0.5) * 14,
+        shape: i % 3
+      });
+    }
+    if (!running) { running = true; requestAnimationFrame(loop); }
+  }
+  function loop() {
+    ctx.clearRect(0, 0, c.width, c.height);
+    for (var i = parts.length - 1; i >= 0; i--) {
+      var p = parts[i];
+      p.x += p.vx; p.y += p.vy; p.vy += 0.42; p.vx *= 0.985; p.rot += p.vrot;
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot * Math.PI / 180);
+      ctx.fillStyle = p.color;
+      if (p.shape === 0) ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.65);
+      else if (p.shape === 1) { ctx.beginPath(); ctx.arc(0, 0, p.size / 2, 0, Math.PI * 2); ctx.fill(); }
+      else { ctx.font = (p.size + 6) + "px sans-serif"; ctx.fillText("⭐", -p.size / 2, p.size / 2); }
+      ctx.restore();
+      if (p.y > c.height + 30) parts.splice(i, 1);
+    }
+    if (parts.length > 0) requestAnimationFrame(loop);
+    else running = false;
+  }
+  return { burst: burst };
+})();
+
+// ===== MUSIK LATAR KAWAII CHIPTUNE-POP & EFEK SUARA =====
+var snd = (function() {
+  var AC = window.AudioContext || window.webkitAudioContext;
+  var ctx = null, timer = null, step = 0, muted = false, started = false;
+  var N = {
+    C3: 130.81, E3: 164.81, F3: 174.61, G3: 196.00, A3: 220.00,
+    C4: 261.63, D4: 293.66, E4: 329.63, F4: 349.23, G4: 392.00, A4: 440.00, B4: 493.88,
+    C5: 523.25, D5: 587.33, E5: 659.25, F5: 698.46, G5: 783.99, A5: 880.00, C6: 1046.50
+  };
+  var MELODY = [
+    ["E5", 0.9], ["G5", 0.9], ["A5", 1.1], ["G5", 0.9], ["E5", 0.9], ["C5", 0.9], ["D5", 0.9], ["E5", 1.1],
+    ["F5", 0.9], ["A5", 0.9], ["G5", 1.1], ["E5", 0.9], ["D5", 1.1], [null, 0.5], ["C5", 0.9], ["D5", 0.9],
+    ["E5", 0.9], ["G5", 0.9], ["C6", 1.2], ["A5", 0.9], ["G5", 0.9], ["E5", 0.9], ["F5", 0.9], ["G5", 1.1],
+    ["A5", 0.9], ["G5", 0.9], ["E5", 0.9], ["D5", 0.9], ["C5", 1.5], [null, 0.5], ["G4", 0.8], ["B4", 0.8]
+  ];
+  var BASS = [
+    "C3", null, "G3", null, "C3", null, "G3", null,
+    "F3", null, "C4", null, "G3", null, "G3", null,
+    "C3", null, "G3", null, "A3", null, "E3", null,
+    "F3", null, "G3", null, "C3", "G3", "C3", null
+  ];
+  var ARP = [
+    "C5", "E5", "G5", "E5", "C5", "E5", "G5", "E5",
+    "F5", "A5", "C6", "A5", "G5", "B4", "D5", "G5",
+    "C5", "E5", "G5", "E5", "A4", "C5", "E5", "C5",
+    "F5", "A5", "G5", "B4", "C5", "E5", "G5", "C6"
+  ];
+
+  function ensure() {
+    if (!ctx && AC) ctx = new AC();
+    if (ctx && ctx.state === "suspended") ctx.resume();
+    return ctx;
+  }
+
+  function tone(freq, dur, type, vol, delay, slideTo) {
+    if (muted) return;
+    var c = ensure();
+    if (!c || !freq) return;
+    var t0 = c.currentTime + (delay || 0);
+    var osc = c.createOscillator(), g = c.createGain();
+    osc.type = type || "triangle";
+    osc.frequency.setValueAtTime(freq, t0);
+    if (slideTo) osc.frequency.exponentialRampToValueAtTime(slideTo, t0 + dur);
+    g.gain.setValueAtTime(0.0001, t0);
+    g.gain.linearRampToValueAtTime(vol || 0.05, t0 + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+    osc.connect(g); g.connect(c.destination);
+    osc.start(t0); osc.stop(t0 + dur + 0.03);
+  }
+
+  function hat(delay) {
+    if (muted) return;
+    var c = ensure();
+    if (!c) return;
+    var t0 = c.currentTime + (delay || 0);
+    var osc = c.createOscillator(), g = c.createGain();
+    osc.type = "square";
+    osc.frequency.setValueAtTime(1400, t0);
+    osc.frequency.exponentialRampToValueAtTime(320, t0 + 0.04);
+    g.gain.setValueAtTime(0.008, t0);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.045);
+    osc.connect(g); g.connect(c.destination);
+    osc.start(t0); osc.stop(t0 + 0.05);
+  }
+
+  function tick() {
+    if (muted) return;
+    var i = step % MELODY.length;
+    var m = MELODY[i], b = BASS[i], a = ARP[i];
+    if (m[0]) {
+      tone(N[m[0]], 0.24 * m[1], "triangle", 0.055, 0);
+      tone(N[m[0]] * 2, 0.14 * m[1], "sine", 0.015, 0.01);
+    }
+    if (b) tone(N[b], 0.22, "sine", 0.048, 0);
+    if (a && i % 2 === 1) tone(N[a], 0.12, "sine", 0.014, 0.02);
+    if (i % 2 === 0) hat(0);
+    step++;
+  }
+
+  function startBgm() {
+    if (started) return;
+    ensure();
+    started = true;
+    updateBtn();
+    if (!muted) tick();
+    timer = setInterval(tick, 250);
+  }
+
+  function toggle() {
+    ensure();
+    muted = !muted;
+    if (!started) { startBgm(); return; }
+    updateBtn();
+    if (!muted) pop();
+  }
+
+  function updateBtn() {
+    var btn = document.getElementById("bgmBtn");
+    if (!btn) return;
+    btn.textContent = muted ? "🔇" : "🎵";
+    btn.classList.toggle("muted", muted);
+    btn.classList.toggle("playing", !muted && started);
+  }
+
+  function pop() { tone(520, 0.09, "sine", 0.07, 0, 880); }
+  function ok() {
+    tone(523.25, 0.12, "triangle", 0.09, 0);
+    tone(659.25, 0.12, "triangle", 0.09, 0.08);
+    tone(783.99, 0.14, "triangle", 0.09, 0.16);
+    tone(1046.50, 0.28, "sine", 0.10, 0.24);
+  }
+  function no() {
+    tone(330, 0.16, "sine", 0.07, 0, 260);
+    tone(277, 0.22, "sine", 0.07, 0.14, 220);
+  }
+  function win() {
+    var seq = [523.25, 659.25, 783.99, 1046.50, 783.99, 1046.50];
+    seq.forEach(function(f, idx) {
+      tone(f, idx === 5 ? 0.42 : 0.14, "triangle", 0.095, idx * 0.11);
+    });
+  }
+
+  return { startBgm: startBgm, toggle: toggle, pop: pop, ok: ok, no: no, win: win };
+})();
+
+document.getElementById("bgmBtn").onclick = function(e) {
+  e.stopPropagation();
+  snd.toggle();
+};
+
+// ===== BANK PERMAINAN & GENERATOR SOAL =====
+var G = {
+  cal: { n: "Calistung", e: "🔢", c: "#ff4f9a", d: "Baca, tulis, hitung", m: 5 },
+  ngaji: { n: "Mengaji", e: "🌙", c: "#1fa968", d: "Huruf hijaiyah", m: 5 },
+  ing: { n: "Bahasa Inggris", e: "🌈", c: "#ff85b9", d: "Hewan, warna, angka", m: 5 },
+  match: { n: "Pasangkan Gambar", e: "🧩", c: "#4cc38a", d: "Geser gambar ke pasangannya", m: 12, s: [] }
+};
+
+var LQ = "";
+function rnd(n) { return Math.floor(Math.random() * n); }
+function pick(a) { return a[rnd(a.length)]; }
+function mc(v, q, ans, wr, w) {
+  var u = [];
+  wr.forEach(function(x) { if (x !== ans && u.indexOf(x) < 0) u.push(x); });
+  var o = shuffle([ans].concat(shuffle(u).slice(0, 2))), r = { v: v, q: q, o: o, a: o.indexOf(ans) };
+  if (w) r.w = w;
+  return r;
+}
+function nd(n, mx) { return [n - 2, n - 1, n + 1, n + 2].filter(function(x) { return x >= 1 && x <= mx && x !== n; }).map(String); }
+var EM = ["🍎", "🐟", "⭐", "🎈", "🍌", "🐥"];
+function cnt(mx) { var n = 1 + rnd(mx); return mc(pick(EM).repeat(n), "Ada berapa?", "" + n, nd(n, mx + 2)); }
+function sama(mx) { var n = 1 + rnd(mx), e = pick(EM); return mc("" + n, "Mana gambar yang jumlahnya sama?", e.repeat(n), [e.repeat(n + 1), e.repeat(n + 2), n > 1 ? e.repeat(n - 1) : ""]); }
+function urut(mx) { var n = 1 + rnd(mx - 1); return mc(n + " " + (n + 1) + " ❓ " + (n + 3), "Angka apa yang hilang?", "" + (n + 2), nd(n + 2, mx + 3)); }
+function tbh(mx) { var a = 1 + rnd(mx - 1), b = 1 + rnd(mx - a); return mc(a + " + " + b, "Hasilnya berapa?", "" + (a + b), nd(a + b, mx + 2)); }
+function krg(mx) { var a = 2 + rnd(mx - 1), b = 1 + rnd(a - 1); return mc(a + " − " + b, "Hasilnya berapa?", "" + (a - b), nd(a - b, mx + 2)); }
+function abc(mx) { var L = "ABCDE".slice(0, mx).split(""), l = pick(L); return mc(l, "Ini huruf apa?", l, L.concat(["F"])); }
+var LT = [["🍌", "P"], ["🐟", "I"], ["🐱", "K"], ["🐘", "G"], ["🍎", "A"]];
+function hrf() { var p = pick(LT); return mc(p[0], "Huruf depan namanya apa?", p[1], "ABDEGIKLMNPRST".split("")); }
+var SK = [["BU", "KU"], ["BA", "TU"], ["MA", "TA"], ["KU", "DA"], ["SA", "PI"], ["KA", "MI"]];
+function sk() { var p = pick(SK), w = pick(SK); return mc(p[0] + " + " + p[1], "Dibaca apa?", p[0] + p[1], [p[1] + p[0], p[0] + w[1], w[0] + p[1], w[0] + w[1]]); }
+var HJ = [["ا", "Alif"], ["ب", "Ba"], ["ت", "Ta"], ["ث", "Tsa"], ["ج", "Jim"], ["ح", "Ha"], ["خ", "Kho"], ["د", "Dal"], ["ذ", "Dzal"], ["ر", "Ra"], ["ز", "Zai"]];
+function hj(a, b) {
+  var s = HJ.slice(a, b), p = pick(s), o = s.filter(function(x) { return x !== p; });
+  return Math.random() < .5 ? mc(p[0], "Ini huruf apa?", p[1], o.map(function(x) { return x[1]; })) : mc("🔎", "Mana huruf " + p[1] + "?", p[0], o.map(function(x) { return x[0]; }));
+}
+var HK = [["ب", "B"], ["ت", "T"], ["ث", "Ts"], ["ج", "J"], ["د", "D"]], VW = [["\u064E", "a"], ["\u0650", "i"], ["\u064F", "u"]];
+function hk() { var c = pick(HK), v = pick(VW); return mc(c[0] + v[0], "Dibaca apa?", c[1] + v[1], VW.filter(function(x) { return x !== v; }).map(function(x) { return c[1] + x[1]; })); }
+function pq(L, q) { var p = pick(L); return mc(p[0], q, p[1], L.filter(function(x) { return x !== p; }).map(function(x) { return x[1]; }), p[1].toLowerCase()); }
+var AN = [["🐱", "Cat"], ["🐶", "Dog"], ["🐟", "Fish"], ["🐥", "Chick"]], COL = [["🔴", "Red"], ["🔵", "Blue"], ["🟢", "Green"], ["🟡", "Yellow"]], FR = [["🍎", "Apple"], ["🍌", "Banana"], ["🍊", "Orange"]], A2 = [["🐘", "Elephant"], ["🐒", "Monkey"], ["🦁", "Lion"], ["🐰", "Rabbit"]];
+var NM = [["One", "1"], ["Two", "2"], ["Three", "3"], ["Four", "4"], ["Five", "5"], ["Six", "6"], ["Seven", "7"], ["Eight", "8"]], SP = [["Good morning", "Selamat pagi"], ["Good night", "Selamat malam"], ["Thank you", "Terima kasih"], ["Hello", "Halo"]];
+function nm(a, b) { var L = NM.slice(a, b), p = pick(L); return mc(p[0], "Itu angka berapa?", p[1], L.filter(function(x) { return x !== p; }).map(function(x) { return x[1]; }), p[0].toLowerCase()); }
+function sp() { var p = pick(SP); return mc(p[0], "Artinya apa?", p[1], SP.filter(function(x) { return x !== p; }).map(function(x) { return x[1]; }), p[0].toLowerCase()); }
+var GEN = {
+  cal: [
+    [function() { return cnt(3); }, function() { return sama(3); }],
+    [function() { return cnt(6); }, function() { return abc(3); }, function() { return urut(5); }],
+    [function() { return cnt(9); }, hrf, function() { return tbh(5); }, function() { return urut(8); }],
+    [function() { return tbh(10); }, function() { return krg(10); }, sk, function() { return urut(10); }]
+  ],
+  ngaji: [
+    [function() { return hj(0, 3); }],
+    [function() { return hj(0, 5); }],
+    [function() { return hj(3, 11); }],
+    [hk, function() { return hj(5, 11); }]
+  ],
+  ing: [
+    [function() { return pq(AN, "Bahasa Inggrisnya apa?"); }, function() { return pq(FR, "Bahasa Inggrisnya apa?"); }],
+    [function() { return pq(COL, "Warna ini apa?"); }, function() { return pq(FR, "Bahasa Inggrisnya apa?"); }, function() { return pq(AN, "Bahasa Inggrisnya apa?"); }],
+    [function() { return nm(0, 5); }, function() { return pq(A2, "Bahasa Inggrisnya apa?"); }, function() { return pq(COL, "Warna ini apa?"); }],
+    [sp, function() { return nm(3, 8); }, function() { return pq(A2, "Bahasa Inggrisnya apa?"); }]
+  ]
+};
+function genQ(k, b) {
+  var q, i = 0;
+  do { q = pick(GEN[k][b - 1])(); } while (i++ < 4 && LQ === q.q + q.v);
+  LQ = q.q + q.v;
+  return q;
+}
+
+var ANIM = '<span class="an" style="top:5%;--t:15s;--dl:-3s"><i>🐦</i></span><span class="an" style="top:24%;--t:21s"><i>🐰</i></span><span class="an" style="top:42%;--t:27s;--dl:-9s"><i>🐢</i></span><span class="an" style="top:61%;--t:17s;--dl:-4s"><i>🐥</i></span><span class="an" style="top:79%;--t:23s;--dl:-14s"><i>🐿️</i></span><span class="an" style="top:33%;--t:12s;--dl:-2s"><i>🦋</i></span>';
+var MAP_DECO = '<g pointer-events="none">' +
+  '<ellipse cx="78" cy="24" rx="14" ry="7" fill="#63d2ff" stroke="#ffffff" stroke-width="1.2"/>' +
+  '<ellipse cx="76" cy="23" rx="6" ry="2.5" fill="#bdf0ff" opacity="0.7"/>' +
+  '<g transform="translate(15, 22)"><circle cx="0" cy="-4" r="7" fill="#4cc38a"/><circle cx="-5" cy="1" r="6" fill="#3bb278"/><circle cx="5" cy="1" r="6" fill="#5cd69b"/><rect x="-2" y="4" width="4" height="6" rx="1" fill="#8d5524"/></g>' +
+  '<g transform="translate(86, 52)"><circle cx="0" cy="-4" r="7" fill="#4cc38a"/><circle cx="-5" cy="1" r="6" fill="#3bb278"/><circle cx="5" cy="1" r="6" fill="#5cd69b"/><rect x="-2" y="4" width="4" height="6" rx="1" fill="#8d5524"/></g>' +
+  '<g transform="translate(14, 72)"><rect x="-2" y="0" width="4" height="5" rx="1" fill="#fff3bf"/><path d="M-7,1 A7,6 0 0,1 7,1 Z" fill="#ff549c"/><circle cx="-3" cy="-2" r="1.2" fill="#fff"/><circle cx="3" cy="-2" r="1.2" fill="#fff"/></g>' +
+  '<g transform="translate(84, 88)"><rect x="-2" y="0" width="4" height="5" rx="1" fill="#fff3bf"/><path d="M-7,1 A7,6 0 0,1 7,1 Z" fill="#ffae42"/><circle cx="-3" cy="-2" r="1.2" fill="#fff"/><circle cx="3" cy="-2" r="1.2" fill="#fff"/></g>' +
+  '</g>';
+
+var MON = {
+  cal: { n: "Pipi si Kelinci", c: "#ffc2dc", e: 2 },
+  ngaji: { n: "Bubu si Beruang", c: "#b9ecc9", e: 3 },
+  ing: { n: "Kiko si Kucing", c: "#ffffff", e: 1 },
+  match: { n: "Cici si Ayam", c: "#ffe27a", e: 4 }
+};
+var K = ["cal", "ngaji", "ing", "match"], P = {}, D = {}, cur, idx, sc, lock, lv, st, X, NQ = 5, CN = {}, spk = 0, T;
+var POS = [[27, 88], [71, 70], [29, 52], [71, 34], [40, 14]];
+var $ = function(i) { return document.getElementById(i); };
+var AG = 0;
+
+$("ages").querySelectorAll("button").forEach(function(b) {
+  b.onclick = function() {
+    snd.pop();
+    AG = +b.dataset.a;
+    $("ages").querySelectorAll("button").forEach(function(x) { x.classList.toggle("on", x === b); });
+  };
+});
+
+function view(id) { ["v1", "v2", "v3", "v4", "v5", "v6"].forEach(function(x) { $(x).classList.toggle("hide", x !== id); }); }
+function shuffle(a) { return a.map(function(x) { return [Math.random(), x]; }).sort(function(p, q) { return p[0] - q[0]; }).map(function(p) { return p[1]; }); }
+
+// Karakter Kartun Imut (SVG)
+function mon(c, t, bow) {
+  var o = "rgba(0,0,0,.18)", ears;
+  if (t === 2) ears = '<ellipse cx="34" cy="22" rx="9" ry="21" fill="' + c + '" stroke="' + o + '"/><ellipse cx="66" cy="22" rx="9" ry="21" fill="' + c + '" stroke="' + o + '"/><ellipse cx="34" cy="24" rx="4.5" ry="14" fill="#ff9bb8"/><ellipse cx="66" cy="24" rx="4.5" ry="14" fill="#ff9bb8"/>';
+  else if (t === 3) ears = '<circle cx="24" cy="30" r="11" fill="' + c + '" stroke="' + o + '"/><circle cx="76" cy="30" r="11" fill="' + c + '" stroke="' + o + '"/><circle cx="24" cy="30" r="5.5" fill="#ff9bb8"/><circle cx="76" cy="30" r="5.5" fill="#ff9bb8"/>';
+  else if (t === 1) ears = '<path d="M20 44L22 12L46 28Z" fill="' + c + '" stroke="' + o + '"/><path d="M80 44L78 12L54 28Z" fill="' + c + '" stroke="' + o + '"/><path d="M26 34L27 20L38 28ZM74 34L73 20L62 28Z" fill="#ff9bb8"/>';
+  else ears = '<ellipse cx="50" cy="20" rx="5" ry="8" fill="' + c + '" stroke="' + o + '"/><ellipse cx="42" cy="22" rx="4" ry="7" fill="' + c + '" transform="rotate(-25 42 22)"/><ellipse cx="58" cy="22" rx="4" ry="7" fill="' + c + '" transform="rotate(25 58 22)"/>';
+  var nose = t === 4 ? '<path d="M44 62h12l-6 8z" fill="#ff9f1c"/>' : '<ellipse cx="50" cy="63" rx="3.5" ry="2.6" fill="#ff7fa8"/>';
+  return '<svg class="m" viewBox="0 0 100 114">' + ears + '<ellipse cx="50" cy="96" rx="24" ry="17" fill="' + c + '" stroke="' + o + '"/><ellipse cx="50" cy="98" rx="14" ry="10" fill="#fff" opacity=".6"/><circle cx="24" cy="92" r="7" fill="' + c + '" stroke="' + o + '"/><circle cx="76" cy="92" r="7" fill="' + c + '" stroke="' + o + '"/><ellipse cx="38" cy="110" rx="9" ry="4.5" fill="' + c + '" stroke="' + o + '"/><ellipse cx="62" cy="110" rx="9" ry="4.5" fill="' + c + '" stroke="' + o + '"/><circle cx="50" cy="56" r="35" fill="' + c + '" stroke="' + o + '"/>' +
+    (bow ? '<path d="M28 30l12 6-12 6zM52 36l12-6v12z" fill="#ff4f9a"/><circle cx="46" cy="36" r="4" fill="#ff4f9a"/>' : "") +
+    '<g class="ey"><ellipse cx="36" cy="54" rx="6.5" ry="8" fill="#2b2540"/><ellipse cx="64" cy="54" rx="6.5" ry="8" fill="#2b2540"/><circle cx="38.5" cy="50" r="2.8" fill="#fff"/><circle cx="66.5" cy="50" r="2.8" fill="#fff"/><circle cx="34" cy="58" r="1.4" fill="#fff"/><circle cx="62" cy="58" r="1.4" fill="#fff"/></g><circle cx="24" cy="66" r="6" fill="#ff7fa8" opacity=".5"/><circle cx="76" cy="66" r="6" fill="#ff7fa8" opacity=".5"/>' + nose + '<ellipse class="mo" cx="50" cy="75" rx="5" ry="2" fill="#7a2a45"/></svg>';
+}
+$("mas").innerHTML = mon("#ffc2dc", 2, 1);
+
+// ===== SUARA KAK CERIA (GEMINI TTS + CADANGAN LOKAL) =====
+var ttsCache = {};
+var player = new Audio();
+var hasGreeted = false;
+
+function setTalk(b) { $("mas").classList.toggle("talk", b); }
+
+function pcmToWavUrl(b64, sampleRate) {
+  var bin = atob(b64);
+  var len = bin.length;
+  var buf = new ArrayBuffer(44 + len);
+  var view = new DataView(buf);
+  function writeStr(off, s) { for (var i = 0; i < s.length; i++) view.setUint8(off + i, s.charCodeAt(i)); }
+  writeStr(0, "RIFF");
+  view.setUint32(4, 36 + len, true);
+  writeStr(8, "WAVE");
+  writeStr(12, "fmt ");
+  view.setUint32(16, 16, true);
+  view.setUint16(20, 1, true);
+  view.setUint16(22, 1, true);
+  view.setUint32(24, sampleRate, true);
+  view.setUint32(28, sampleRate * 2, true);
+  view.setUint16(32, 2, true);
+  view.setUint16(34, 16, true);
+  writeStr(36, "data");
+  view.setUint32(40, len, true);
+  var out = new Uint8Array(buf, 44);
+  for (var i = 0; i < len; i++) out[i] = bin.charCodeAt(i);
+  return URL.createObjectURL(new Blob([buf], { type: "audio/wav" }));
+}
+
+function getApiKey() {
+  return (GEMINI_API_KEY || localStorage.getItem("bimba_gemini_key") || "").trim();
+}
+
+async function fetchCuteTTS(text, lang) {
+  var key = lang + ":" + text;
+  if (ttsCache[key]) return ttsCache[key];
+  var apiKey = getApiKey();
+  var promptText = lang === "en-US"
+    ? "Say this English word clearly with a very cute, sweet, cheerful young girl cartoon mascot voice for little kids: " + text
+    : "Ucapkan kalimat Bahasa Indonesia berikut dengan suara kakak perempuan muda yang sangat imut, ceria, lembut, antusias, dan menggemaskan seperti pembimbing PAUD/TK kepada anak-anak: " + text;
+
+  try {
+    var res = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=" + encodeURIComponent(apiKey), {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: promptText }] }],
+        generationConfig: {
+          responseModalities: ["AUDIO"],
+          speechConfig: {
+            voiceConfig: {
+              prebuiltVoiceConfig: { voiceName: "Leda" }
+            }
+          }
+        }
+      })
+    });
+    if (!res.ok) return null;
+    var data = await res.json();
+    var part = data && data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0];
+    var inline = part && part.inlineData;
+    if (!inline || !inline.data) return null;
+    var rateMatch = (inline.mimeType || "").match(/rate=(\d+)/);
+    var rate = rateMatch ? parseInt(rateMatch[1], 10) : 24000;
+    var url = pcmToWavUrl(inline.data, rate);
+    ttsCache[key] = url;
+    return url;
+  } catch (e) {
+    return null;
+  }
+}
+
+function stopVoice() {
+  try { player.pause(); player.currentTime = 0; } catch (e) {}
+  try { if (window.speechSynthesis) speechSynthesis.cancel(); } catch (e) {}
+  setTalk(0);
+}
+
+function speakFallback(clean, lang, id, onDone) {
+  try {
+    var u = new SpeechSynthesisUtterance(clean);
+    u.lang = lang || "id-ID";
+    u.rate = 0.96;
+    u.pitch = 1.48;
+    var vs = speechSynthesis.getVoices();
+    var v = vs.find(function(x) { return x.lang.indexOf(lang.slice(0, 2)) === 0 && /female|perempuan|gadis|siti|damayanti|google/i.test(x.name); }) ||
+            vs.find(function(x) { return x.lang.indexOf(lang.slice(0, 2)) === 0; });
+    if (v) u.voice = v;
+    u.onend = u.onerror = function() {
+      if (id === spk) setTalk(0);
+      if (onDone) onDone();
+    };
+    setTalk(1);
+    speechSynthesis.speak(u);
+  } catch (e) {
+    setTalk(1);
+    setTimeout(function() { if (id === spk) setTalk(0); if (onDone) onDone(); }, 1300);
+  }
+}
+
+async function say(t, l, keep, onDone) {
+  var clean = (t || "").replace(/[^\p{L}\p{N}\s.,!?+\-]/gu, "").trim();
+  if (!clean) { if (onDone) onDone(); return; }
+  if (!keep) stopVoice();
+  var id = ++spk;
+  var lang = l || "id-ID";
+
+  setTalk(1);
+  var url = await fetchCuteTTS(clean, lang);
+  if (id !== spk) return;
+
+  if (url) {
+    player.src = url;
+    player.onended = player.onerror = function() {
+      if (id === spk) setTalk(0);
+      if (onDone) onDone();
+    };
+    try {
+      await player.play();
+      return;
+    } catch (err) {}
+  }
+  speakFallback(clean, lang, id, onDone);
+}
+
+function bub(t, e, mute) {
+  $("bub").textContent = t;
+  var m = $("mas");
+  m.classList.remove("wig");
+  void m.offsetWidth;
+  m.classList.add("wig");
+  if (!mute) say(t, "id-ID");
+}
+
+$("mas").onclick = function() {
+  snd.startBgm();
+  say($("bub").textContent, "id-ID");
+};
+
+// Pengaturan kunci rahasia jika judul diketuk 5x
+var tapCount = 0, tapTimer = null;
+$("brandHeader").onclick = function(e) {
+  if (e.target && e.target.id === "bgmBtn") return;
+  tapCount++;
+  clearTimeout(tapTimer);
+  tapTimer = setTimeout(function() { tapCount = 0; }, 1500);
+  if (tapCount >= 5) {
+    tapCount = 0;
+    var curKey = getApiKey();
+    var nextKey = window.prompt("Masukkan Kunci API Gemini untuk suara Kak Ceria:", curKey);
+    if (nextKey !== null) {
+      localStorage.setItem("bimba_gemini_key", nextKey.trim());
+      ttsCache = {};
+      bub("Kunci suara Kak Ceria sudah diperbarui! Ayo coba ketuk aku!");
+    }
+  }
+};
+
+function unlockAudioOnce() {
+  snd.startBgm();
+  if (!hasGreeted) {
+    hasGreeted = true;
+    say($("bub").textContent, "id-ID");
+  }
+  document.removeEventListener("pointerdown", unlockAudioOnce);
+  document.removeEventListener("keydown", unlockAudioOnce);
+}
+document.addEventListener("pointerdown", unlockAudioOnce);
+document.addEventListener("keydown", unlockAudioOnce);
+
+bub("Halo! Aku Kak Ceria dari Rumah Main Bimba Ruang Ceria. Siapa namamu?", 0, 1);
+
+// ===== PETA BERLIKU =====
+function drawMap(el, N, at, pm) {
+  var d = "M" + N[0].x + " " + N[0].y;
+  for (var i = 1; i < N.length; i++) {
+    var a = N[i - 1], b = N[i], m = (a.y + b.y) / 2;
+    d += " C" + a.x + " " + m + " " + b.x + " " + m + " " + b.x + " " + b.y;
+  }
+  var h = '<svg viewBox="0 0 100 100" preserveAspectRatio="none">' +
+    MAP_DECO +
+    '<path d="' + d + '" fill="none" stroke="#d99e52" stroke-width="34" stroke-linecap="round" vector-effect="non-scaling-stroke"/>' +
+    '<path d="' + d + '" fill="none" stroke="#ffe0a3" stroke-width="26" stroke-linecap="round" vector-effect="non-scaling-stroke"/>' +
+    '<path d="' + d + '" fill="none" stroke="#fff" stroke-opacity=".85" stroke-width="4" stroke-dasharray="10 12" stroke-linecap="round" vector-effect="non-scaling-stroke"/>' +
+    '</svg>';
+  N.forEach(function(n, i) {
+    h += '<button class="nd ' + n.c + '" data-i="' + i + '" style="left:' + n.x + '%;top:' + n.y + '%">' + n.t + "<small>" + n.s + "</small></button>";
+  });
+  if (pm) h += '<div class="pm" id="pm" style="left:' + N[at].x + "%;top:" + (N[at].y - 5) + '%">' + pm + "</div>";
+  el.innerHTML = h + ANIM;
+  el.querySelectorAll(".nd").forEach(function(b) {
+    b.onclick = function() {
+      snd.pop();
+      var f = N[b.dataset.i].f;
+      if (f) f();
+    };
+  });
+}
+
+$("mulai").onclick = function() {
+  snd.startBgm();
+  D.nama = $("nama").value.trim();
+  D.usia = AG;
+  D.b = AG - 2;
+  if (!D.nama || !D.usia) {
+    snd.no();
+    bub("Isi nama dan pilih umurmu dulu ya!");
+    return;
+  }
+  snd.ok();
+  hasGreeted = true;
+  menu("Halo " + D.nama + "! Aku Kak Ceria. Pilih pulau yang mau kamu mainkan!");
+};
+
+function ageBar() {
+  var h = "";
+  [3, 4, 5, 6].forEach(function(a) {
+    h += '<button data-a="' + a + '" class="' + (a === D.usia ? "on" : "") + '">' + ["🐣", "🐥", "🐰", "🦁"][a - 3] + "<b>" + a + "</b>tahun</button>";
+  });
+  var el = $("ages2");
+  el.innerHTML = h;
+  el.querySelectorAll("button").forEach(function(b) {
+    b.onclick = function() {
+      snd.pop();
+      var a = +b.dataset.a;
+      D.usia = a;
+      D.b = a - 2;
+      P = {};
+      CN = {};
+      menu("Sekarang soal untuk umur " + a + " tahun. Pilih pulaunya ya!");
+    };
+  });
+}
+
+function menu(t) {
+  bub(t);
+  var n = 0, at = 4;
+  ageBar();
+  var N = K.map(function(k, i) {
+    var g = G[k], p = P[k], dn = p !== undefined;
+    if (dn) n++; else if (at === 4) at = i;
+    return {
+      x: POS[i][0], y: POS[i][1], t: g.e,
+      s: dn ? "Level " + level(p, g.m) : g.n,
+      c: dn ? "dn" : "",
+      f: function() { k === "match" ? mstart() : start(k); }
+    };
+  });
+  N.forEach(function(o, i) { if (i === at) o.c = "cur"; });
+  N.push({
+    x: POS[4][0], y: POS[4][1], t: "🎁", s: "Hasil",
+    c: n ? "cur" : "lock",
+    f: function() { n ? hasil() : bub("Main satu permainan dulu ya!"); }
+  });
+  drawMap($("hm"), N, at, mon("#ffc2dc", 2, 1));
+  view("v2");
+}
+
+function start(k) {
+  cur = k; idx = 0; sc = 0; lv = D.b; st = 0;
+  $("v3").style.setProperty("--c", G[k].c);
+  view("v3");
+  $("qcard").classList.add("hide");
+  $("smap").classList.remove("hide");
+  $("pb").style.width = "0";
+  showMap(0, 0);
+  bub("Ayo " + D.nama + ", kita belajar " + G[k].n + "! Ikuti petanya ya!");
+  T = setTimeout(tampil, 3000);
+}
+
+function showMap(from, to) {
+  var N = [];
+  for (var i = 0; i < NQ; i++) {
+    N.push({
+      x: POS[i][0], y: POS[i][1],
+      t: i === NQ - 1 ? "🎁" : String(i + 1),
+      s: i === NQ - 1 ? "5" : "",
+      c: i < to ? "dn" : i === to ? "cur" : "lock"
+    });
+  }
+  drawMap($("smap"), N, from, mon(MON[cur].c, MON[cur].e));
+  if (from !== to) {
+    setTimeout(function() {
+      var p = $("pm");
+      if (p) {
+        p.style.left = POS[to][0] + "%";
+        p.style.top = (POS[to][1] - 5) + "%";
+      }
+    }, 100);
+  }
+}
+
+$("back").onclick = function() {
+  snd.pop();
+  clearTimeout(T);
+  menu("Mau main yang lain?");
+};
+
+function chips() {
+  $("lad").innerHTML = '<span class="on">Soal umur ' + D.usia + ' th</span><span class="st">⭐ ' + sc + "</span>";
+}
+
+function tampil() {
+  $("smap").classList.add("hide");
+  $("qcard").classList.remove("hide");
+  var x = X = genQ(cur, lv);
+  lock = false;
+  chips();
+  $("vis").textContent = x.v;
+  $("qt").textContent = x.q;
+  bub(G[cur].n + " · soal " + (idx + 1) + " dari " + NQ, 0, 1);
+  var box = $("opts");
+  box.innerHTML = "";
+  shuffle(x.o.map(function(t, n) { return { t: t, n: n }; })).forEach(function(p) {
+    var b = document.createElement("button");
+    b.className = "opt" + (/[\u0600-\u06FF]/.test(p.t) ? " ar" : "");
+    b.textContent = p.t;
+    b.onclick = function() { jawab(b, p.n === x.a); };
+    box.appendChild(b);
+  });
+  baca();
+}
+
+function baca() {
+  var x = X;
+  var sv = /^[A-Z\d +−❓]+$/.test(x.v) ? x.v.replace("+", " tambah ").replace("−", " kurang ").replace("❓", " berapa ") + ". " : "";
+  say(sv + x.q, "id-ID", false, function() {
+    if (x.w) say(x.w, "en-US", true);
+  });
+}
+
+$("sp").onclick = function() {
+  snd.pop();
+  baca();
+};
+
+function jawab(b, ok) {
+  if (lock) return;
+  lock = true;
+  b.classList.add(ok ? "ok" : "no");
+  if (ok) {
+    sc++;
+    snd.ok();
+    confetti.burst(38);
+    bub(["Hebat sekali!", "Pintar!", "Yeay, benar!"][idx % 3]);
+  } else {
+    snd.no();
+    bub("Hampir! Ayo lanjut ya!");
+  }
+
+  T = setTimeout(function() {
+    idx++;
+    if (idx < NQ) {
+      $("qcard").classList.add("hide");
+      $("smap").classList.remove("hide");
+      $("pb").style.width = (idx / NQ * 100) + "%";
+      showMap(idx - 1, idx);
+      T = setTimeout(tampil, 1800);
+    } else {
+      P[cur] = sc;
+      CN[cur] = sc;
+      reward(cur);
+    }
+  }, 1400);
+}
+
+function reward(k) {
+  var m = MON[k], L = level(P[k], G[k].m);
+  $("rwm").innerHTML = mon(m.c, m.e, 1);
+  $("rwn").textContent = m.n;
+  $("rwl").textContent = "Levelmu di " + G[k].n + ": " + L + " (" + NAMA_LEVEL[L] + ")";
+  view("v6");
+  snd.win();
+  confetti.burst(75);
+  bub("Hore! Kamu dapat teman baru, namanya " + m.n + "! Levelmu " + L + ".");
+}
+
+$("rwgo").onclick = function() {
+  snd.pop();
+  menu("Pilih pulau berikutnya ya!");
+};
+
+function hasil() {
+  var h = "", tx = "";
+  K.forEach(function(k) {
+    var p = P[k];
+    if (p === undefined) return;
+    var L = level(p, G[k].m), m = MON[k];
+    h += '<div class="res" style="--c:' + G[k].c + '"><span class="mini">' + mon(m.c, m.e) + "</span><span>" + G[k].n + "</span><em>" + L + "</em></div>";
+    tx += G[k].n + ": Level " + L + (k === "match" ? " (" + p + "/" + G.match.m + " pasangan benar)" : " (benar " + CN[k] + " dari " + NQ + " soal)") + "\n";
+  });
+  $("rs").innerHTML = h;
+  $("ket").textContent = "A = " + NAMA_LEVEL.A + ", B = " + NAMA_LEVEL.B + ", C = " + NAMA_LEVEL.C + ". Soal disesuaikan dengan umurmu, dan level ditentukan dari jumlah jawaban benar.";
+  $("wa").href = "https://wa.me/" + WA_ADMIN + "?text=" + encodeURIComponent("Halo admin, anak saya sudah main game di Rumah Main Bimba Ruang Ceria.\nNama: " + D.nama + "\nUsia: " + D.usia + " th\nHasil game:\n" + tx + "Mohon info pendaftarannya ya.");
+  snd.win();
+  confetti.burst(65);
+  bub("Wah, " + D.nama + " hebat! Ini hasil mainmu!");
+  view("v4");
+}
+
+$("kembali").onclick = function() {
+  snd.pop();
+  menu("Mau main lagi? Yuk!");
+};
+
+// ===== GAME PASANGKAN GAMBAR =====
+var R, mr, mdone, msc;
+var HF = [["🐰", "🥕"], ["🐱", "🐟"], ["🐵", "🍌"], ["🐶", "🦴"]],
+    WR = [["🍎", "🔴"], ["🍌", "🟡"], ["🥒", "🟢"], ["🐳", "🔵"]],
+    NU = [["1", "🎈"], ["2", "🐟🐟"], ["3", "🍎🍎🍎"], ["4", "⭐⭐⭐⭐"], ["5", "🍌🍌🍌🍌🍌"]],
+    HU = [["🍌", "P"], ["🐟", "I"], ["🐱", "K"], ["🐘", "G"], ["🍎", "A"]];
+var RR = [
+  [{ t: "Pasangkan hewan dengan makanannya", p: HF.slice(0, 3) }, { t: "Pasangkan gambar dengan warnanya", p: WR.slice(0, 3) }],
+  [{ t: "Pasangkan hewan dengan makanannya", p: HF }, { t: "Pasangkan angka dengan jumlah gambar", p: NU.slice(0, 3) }],
+  [{ t: "Pasangkan hewan dengan makanannya", p: HF }, { t: "Pasangkan angka dengan jumlah gambar", p: NU.slice(0, 4) }, { t: "Pasangkan gambar dengan warnanya", p: WR }],
+  [{ t: "Pasangkan angka dengan jumlah gambar", p: NU }, { t: "Pasangkan gambar dengan huruf depannya", p: HU }, { t: "Pasangkan hewan dengan makanannya", p: HF }]
+];
+
+function mstart() {
+  R = RR[D.b - 1];
+  G.match.m = R.reduce(function(a, r) { return a + r.p.length; }, 0);
+  mr = 0; msc = 0;
+  view("v5");
+  mround();
+}
+
+function mround() {
+  var r = R[mr], z = "", d = "";
+  mdone = 0;
+  $("mpb").style.width = (mr / R.length * 100) + "%";
+  $("mt").textContent = r.t;
+  bub("Geser gambarnya ke pasangannya ya! (" + (mr + 1) + "/" + R.length + ")", 0, 1);
+  say(r.t, "id-ID");
+  r.p.forEach(function(p, i) { z += '<div class="zone" data-i="' + i + '">' + p[1] + '</div>'; });
+  shuffle(r.p.map(function(p, i) { return i; })).forEach(function(i) { d += '<div class="drag" data-i="' + i + '">' + r.p[i][0] + '</div>'; });
+  $("zones").innerHTML = z;
+  $("tray").innerHTML = d;
+  $("tray").querySelectorAll(".drag").forEach(drag);
+}
+
+function drag(el) {
+  el.onpointerdown = function(e) {
+    e.preventDefault();
+    snd.pop();
+    var sx = e.clientX, sy = e.clientY;
+    el.classList.add("up");
+    el.style.transition = "none";
+    function mv(ev) { el.style.transform = "translate(" + (ev.clientX - sx) + "px," + (ev.clientY - sy) + "px) scale(1.15)"; }
+    function up(ev) {
+      document.removeEventListener("pointermove", mv);
+      document.removeEventListener("pointerup", up);
+      document.removeEventListener("pointercancel", up);
+      el.style.pointerEvents = "none";
+      var t = document.elementFromPoint(ev.clientX, ev.clientY);
+      el.style.pointerEvents = "";
+      var z = t && t.closest ? t.closest(".zone") : null;
+      el.classList.remove("up");
+      el.style.transition = "";
+      if (z && !z.classList.contains("ok") && z.dataset.i === el.dataset.i) {
+        z.classList.add("ok");
+        z.appendChild(el);
+        el.style.transform = "";
+        el.onpointerdown = null;
+        el.classList.add("placed");
+        if (!el.dataset.err) msc++;
+        snd.ok();
+        confetti.burst(28);
+        bub(["Hebat! 🎉", "Pintar! ⭐", "Yeay, cocok! 👏"][mdone % 3]);
+        if (++mdone === R[mr].p.length) setTimeout(function() { mr++; mr < R.length ? mround() : mfin(); }, 1200);
+      } else {
+        el.style.transform = "";
+        if (z && !z.classList.contains("ok")) {
+          el.dataset.err = 1;
+          snd.no();
+          bub("Belum cocok, coba lagi ya 💪");
+        }
+      }
+    }
+    document.addEventListener("pointermove", mv);
+    document.addEventListener("pointerup", up);
+    document.addEventListener("pointercancel", up);
+  };
+}
+
+function mfin() {
+  P.match = msc;
+  reward("match");
+}
+
+$("mback").onclick = function() {
+  snd.pop();
+  menu("Mau main yang lain?");
+};
+</script>
+</body>
+</html>
